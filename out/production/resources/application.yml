@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: PortalConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: YOUR_GIT_URL
+          username: GIT_ID
+          password: GIT_PASSWORD
+server:
+  port: ${8004}
+
+
+
+management:
+  security:
+    enabled: false
+
