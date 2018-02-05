@@ -10,6 +10,11 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# ignore output and build directories 
+build/**
+bin/**
+out/**
+
 # Package Files #
 *.jar
 *.war
@@ -22,12 +27,10 @@
 hs_err_pid*
 
 # generated gradle directories and files
+.gradle
 .settings
 
 # eclise settings
 .classpath
 .project
-
-# output directories
-out/**
 
