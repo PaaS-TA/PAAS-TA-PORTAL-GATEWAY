@@ -34,3 +34,6 @@ hs_err_pid*
 .classpath
 .project
 
+# remove development settings
+src/main/resources/application*
+src/test/resources/application*
