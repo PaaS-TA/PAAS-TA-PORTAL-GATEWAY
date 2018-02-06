@@ -2,24 +2,24 @@ buildscript {
     ext {
         springBootVersion = '1.5.10.RELEASE'
     }
-	
+
     repositories {
         mavenCentral()
     }
-	
-    dependencies { 
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
-	}
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
-
+apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'jacoco'
 
 
-jar{
+jar {
     baseName = 'paas-ta-portal-gateway'
 }
 
@@ -28,7 +28,7 @@ targetCompatibility = 1.8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-	springBootVersion = '1.5.10.RELEASE'
+    springBootVersion = '1.5.10.RELEASE'
     springCloudVersion = 'Edgware.SR1'
 }
 
@@ -37,25 +37,28 @@ repositories {
 }
 
 dependencies {
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-turbine')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencyManagement {
     imports {
-		mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 
 eclipse {
-	classpath {
-		downloadSources = true
-		defaultOutputDir = file("${buildDir}/classes/main")
-	}
+    classpath {
+        downloadSources = true
+        defaultOutputDir = file("${buildDir}/classes/main")
+    }
 }
 
 jacoco {
-	toolVersion = "0.7.9+"
+    toolVersion = "0.7.9+"
 }
 
 test {
@@ -65,6 +68,3 @@ test {
     }
 }
 
-jar {
-    baseName = 'PAAS-TA-PORTAL-GATEWAY'
-}
