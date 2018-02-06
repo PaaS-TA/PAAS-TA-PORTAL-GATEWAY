@@ -14,12 +14,14 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'eclipse'
+
 apply plugin: 'org.springframework.boot'
 apply plugin: 'jacoco'
 
-group = 'org.openpaas.paasta'
-version = 'PAAS-TA-PORTAL-V2-SP1-SNAPSHOT'
+
+jar{
+    baseName = 'paas-ta-portal-gateway'
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
