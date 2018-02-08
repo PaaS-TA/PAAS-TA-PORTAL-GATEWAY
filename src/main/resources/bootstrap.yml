@@ -1,6 +1,6 @@
 spring:
   application:
-      name: PortalGateway
+    name: PortalGateway
   cloud:
     config:
       uri: http://localhost:8004

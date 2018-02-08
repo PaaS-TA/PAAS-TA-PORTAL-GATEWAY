@@ -1,17 +1,8 @@
 package org.openpaas.paasta.gateway.filter.pre;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.http.HttpStatus;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -23,23 +14,23 @@ import org.slf4j.LoggerFactory;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
-// Eureka redirect filter (bean)
 /**
  *
  * @since 2018-02-06
  * @author Hyungu Cho
  *
  */
+// Zuul Eureka static resource redirect filter
 public class EurekaStaticResourceRouteFilter extends ZuulFilter {
     private static final Logger logger = LoggerFactory.getLogger( EurekaStaticResourceRouteFilter.class ); 
     
-    @Value("${zuul.EurekaStaticResourceRouteFilter.pre.redirect-starts-with.filters:/eureka/css/,/eureka/js/,/eureka/fonts/,/eureka/images/}")
+    @Value("${paasta.zuul.eureka-static.redirect-starts-with.filters:/eureka/css/,/eureka/js/,/eureka/fonts/,/eureka/images/}")
     private String[] filters;
     
-    @Value("${zuul.EurekaStaticResourceRouteFilter.pre.redirect-starts-with.route-path:/eureka}")
+    @Value("${paasta.zuul.eureka-static.redirect-starts-with.route-path:/eureka}")
     private String routePath;
     
-    @Value("${zuul.EurekaStaticResourceRouteFilter.pre.redirect-starts-with.additional-prefix:/eureka}")
+    @Value("${paasta.zuul.eureka-static.redirect-starts-with.additional-prefix:/eureka}")
     private String toAdditionalPrefix;
     
     @Override

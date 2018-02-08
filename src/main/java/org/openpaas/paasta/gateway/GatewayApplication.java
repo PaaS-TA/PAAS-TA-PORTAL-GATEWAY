@@ -2,14 +2,11 @@ package org.openpaas.paasta.gateway;
 
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-
 import org.openpaas.paasta.gateway.GatewayApplication;
 import org.openpaas.paasta.gateway.filter.pre.EurekaStaticResourceRouteFilter;
 import org.openpaas.paasta.gateway.filter.pre.RequestLoggingFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
