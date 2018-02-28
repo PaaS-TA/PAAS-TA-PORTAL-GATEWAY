@@ -43,12 +43,15 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.cloud:spring-cloud-starter-config'
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
-	compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
-	compile 'org.springframework.cloud:spring-cloud-starter-zuul'
-	compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
+    //Admin Server Setting
+    compile ('de.codecentric:spring-boot-admin-starter-client')
+
+    compile ('org.springframework.cloud:spring-cloud-starter-config')
+    compile ('org.springframework.cloud:spring-cloud-starter-eureka')
+	compile ('org.springframework.cloud:spring-cloud-starter-ribbon')
+	compile ('org.springframework.cloud:spring-cloud-starter-zuul')
+	compile ('org.codehaus.groovy:groovy-all:${groovyVersion}')
+	testCompile ('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencyManagement {
