@@ -35,7 +35,7 @@ def defaultEncoding = 'UTF-8'
 ext {
     springBootVersion = '1.5.10.RELEASE'
     springCloudVersion = 'Edgware.SR1'
-	groovyVersion = '2.4.13'
+
 }
 
 repositories {
@@ -50,7 +50,7 @@ dependencies {
     compile ('org.springframework.cloud:spring-cloud-starter-eureka')
 	compile ('org.springframework.cloud:spring-cloud-starter-ribbon')
 	compile ('org.springframework.cloud:spring-cloud-starter-zuul')
-	compile ('org.codehaus.groovy:groovy-all:${groovyVersion}')
+	compile ('org.codehaus.groovy:groovy-all:2.4.13')
 	testCompile ('org.springframework.boot:spring-boot-starter-test')
 }
 
