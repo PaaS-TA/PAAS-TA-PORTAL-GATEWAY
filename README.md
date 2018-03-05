@@ -1,7 +1,5 @@
 # PAAS-TA-PORTAL-GATEWAY
 
-## 버전 정보
-Portal v2.0의 Sprint1의 개발중인 버전이다.
 
 ## ZUUL Server
 MSA의 문제점 중의 하나는 각 서비스가 다른 서버에 분리 배포 되기 때문에, API의 End point 즉, 서버의 URL이 각기 다르다는 것이다.
