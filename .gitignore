@@ -14,6 +14,7 @@
 build/**
 bin/**
 out/**
+.idea/**
 
 # Package Files #
 *.jar
@@ -37,6 +38,3 @@ hs_err_pid*
 # remove spring bean configuration
 .spring*
 
-# remove development settings
-src/main/resources/application*
-src/test/resources/application*
