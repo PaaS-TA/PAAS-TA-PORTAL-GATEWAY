@@ -12,6 +12,6 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:2221/eureka/
+      defaultZone: http://localhost:2221/eureka/
   instance:
     hostname: localhost
