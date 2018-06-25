@@ -43,7 +43,7 @@ public class EurekaStaticResourceRouteFilter extends ZuulFilter {
         return fullURL.substring(0, fullURL.indexOf(fullURI)) + routePath;
     }
 
-    @HystrixCommand(fallbackMethod = "run")
+    @HystrixCommand(commandKey = "run")
     @Override
     public Object run() {
         Optional<RequestContext> ctxOp = Optional.of(RequestContext.getCurrentContext());
