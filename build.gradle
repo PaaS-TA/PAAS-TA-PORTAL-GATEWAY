@@ -44,9 +44,9 @@ repositories {
 
 dependencies {
     //Admin Server Setting
-    compile ('de.codecentric:spring-boot-admin-starter-client:1.5.7')
-
-    compile ('org.springframework.cloud:spring-cloud-starter-config')
+//    compile ('de.codecentric:spring-boot-admin-starter-client:1.5.7')
+//
+//    compile ('org.springframework.cloud:spring-cloud-starter-config')
     compile ('org.springframework.cloud:spring-cloud-starter-eureka')
     compile ('org.springframework.cloud:spring-cloud-starter-ribbon')
     compile ('org.springframework.cloud:spring-cloud-starter-zuul')
