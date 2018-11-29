@@ -1,6 +1,6 @@
 package org.openpaas.paasta.gateway.filter.pre;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import org.springframework.beans.factory.annotation.Value;
 import java.net.URL;
 import java.util.Arrays;
@@ -43,7 +43,7 @@ public class EurekaStaticResourceRouteFilter extends ZuulFilter {
         return fullURL.substring(0, fullURL.indexOf(fullURI)) + routePath;
     }
 
-    @HystrixCommand(commandKey = "run")
+
     @Override
     public Object run() {
         Optional<RequestContext> ctxOp = Optional.of(RequestContext.getCurrentContext());
