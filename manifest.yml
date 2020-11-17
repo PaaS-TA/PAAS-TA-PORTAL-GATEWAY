@@ -1,0 +1,17 @@
+applications:
+  - name: portal-gateway
+    memory: 1G
+    instances: 1
+    buildpacks:
+    - java_buildpack
+    routes:
+    - route: portal-gateway.<DOMAIN>
+    path: build/libs/paas-ta-portal-gateway.jar
+    env:
+      server_port: 80
+
+      spring_application_name: PortalGateWay
+
+      eureka_client_serviceUrl_defaultZone: http://portal-registration.<DOMAIN>/eureka/
+      eureka_instance_hostname: ${vcap.application.uris[0]}
+      eureka_instance_nonSecurePort: 80

@@ -2,7 +2,6 @@
 spring:
   application:    # Identify this application
     name: PortalGateWay
-  server-uuid: ${random.uuid}
   http:    # spring boot 1.x
     multipart:
       enabled: true
@@ -15,6 +14,64 @@ spring:
       max-file-size: 1024MB
       max-request-size: 1024MB
       location: ${java.io.tmpdir}
+
+server:     # Default Gateway server port
+  port: ${PORT:2225}
+
+# Zuul route rule : zuul.routes.[spring.application.name]=path
+zuul:
+  ignored-services: '*'
+  sensitiveHeaders:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  host:
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 60000
+  routes:
+    PortalApi:
+      path: /portalapi/**
+      url: PORTALAPI
+      sensitiveHeaders:
+    CommonApi:
+      path: /commonapi/**
+      url: PORTALCOMMONAPI
+      sensitiveHeaders:
+    StorageApi:
+      path: /storageapi/**
+      url: PORTALSTORAGEAPI
+      sensitiveHeaders:
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://<PORTAL_REGISTRATION_IP>:<PORTAL_REGISTRATION_PORT>/eureka/
+      registry-fetch-interval-seconds: 5
+  instance:
+    hostname: ${spring.cloud.client.hostname}
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 10
+
+ribbon:     # Do load balancing without discovery service
+  eureka:
+    enabled: ${EUREKA_ENABLED:true}
+  ConnectTimeout: 5000
+  ReadTimeout: 60000
+  SocketTimeout: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 65000
+
+management:     # If you set off security...
+  security:
+    enabled: false
 
 #Spring config setting (current version not used)
 #  boot:
@@ -50,69 +107,3 @@ spring:
 #    name: ${project.name}
 #    artifact: ${project.artifactId}
 #    description: ${project.description}
-
-server:     # Default Gateway server port
-  port: ${PORT:2225}
-
-# Zuul route rule : zuul.routes.[spring.application.name]=path
-zuul:
-  ignored-services: '*'
-  host:
-    connect-timeout-millis: 5000
-    socket-timeout-millis: 60000
-  routes:
-    PortalApi:
-      path: /portalapi/**
-      url: PORTALAPI
-      sensitiveHeaders:
-    CommonApi:
-      path: /commonapi/**
-      url: PORTALCOMMONAPI
-      sensitiveHeaders:
-    StorageApi:
-      path: /storageapi/**
-      url: PORTALSTORAGEAPI
-      sensitiveHeaders:
-
-eureka:
-  instance:
-    preferIpAddress: true
-
-ribbon:     # Do load balancing without discovery service
-  eureka:
-    enabled: ${EUREKA_ENABLED:true}
-  ConnectTimeout: 5000
-  ReadTimeout: 60000
-  SocketTimeout: 60000
-
-management:     # If you set off security...
-  security:
-    enabled: false
-
----
-spring:
-  profiles: local
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:2221/eureka/ # YOUR LOCAL TEST SETTING
-      registry-fetch-interval-seconds: 5
-  instance:
-    hostname: ${spring.cloud.client.hostname}
-    lease-expiration-duration-in-seconds: 5
-    lease-renewal-interval-in-seconds: 10
-
----
-spring:
-  profiles: dev
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://XXX.XXX.XXX.XXX:2221/eureka/ #YOUR EUREKA SERVICE DEV SETTING(ACTIVE INFORMATION)
-      registry-fetch-interval-seconds: 5
-  instance:
-    hostname: ${spring.cloud.client.hostname}
-    lease-expiration-duration-in-seconds: 5
-    lease-renewal-interval-in-seconds: 10
