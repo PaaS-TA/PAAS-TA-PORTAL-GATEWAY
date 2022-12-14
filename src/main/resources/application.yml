@@ -39,6 +39,10 @@ zuul:
       path: /storageapi/**
       url: PORTALSTORAGEAPI
       sensitiveHeaders:
+    LoggingApi:
+      path: /logapi/**
+      url: PORTALLOGGINGAPI
+      sensitiveHeaders:
 
 # Discovery Server Access
 eureka:
